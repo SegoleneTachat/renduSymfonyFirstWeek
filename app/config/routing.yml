@@ -1,0 +1,19 @@
+iim_blog:
+    resource: "@IIMBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+iim_article:
+    resource: "@IIMArticleBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin/sonata
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin/sonata
+
