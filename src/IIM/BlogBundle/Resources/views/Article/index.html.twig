@@ -12,6 +12,7 @@
                 <th>Created At</th>
                 <th>Updated At</th>
                 <th>Enabled</th>
+                <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ entity.enabled }}</td>
+                <td><img src="{{ vich_uploader_asset(entity, 'image') | imagine_filter('my_thumb') }}" /></td>
                 <td>
                 <ul>
                     <li>

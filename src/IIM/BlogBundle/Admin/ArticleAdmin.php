@@ -17,6 +17,7 @@ class ArticleAdmin extends Admin
             ->add('title')
             ->add('content')
             ->add('enabled')
+            ->add('image', 'file')
             ->end()
         ;
     }

@@ -4,6 +4,9 @@ namespace IIM\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 /**
@@ -11,6 +14,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="IIM\BlogBundle\Entity\ArticleRepository")
+ * @Vich\Uploadable
  */
 class Article
 {
@@ -52,6 +56,25 @@ class Article
      * @ORM\ManyToOne(targetEntity="User")
      */
     private $author;
+
+    /**
+     * @Assert\File(
+     *     maxSize="1M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
+     * )
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
+     *
+     * @var File $image
+     */
+    protected $image;
+
+    /**
+     * @ORM\Column(type="string", length=255, name="image_name")
+     *
+     * @var string $imageName
+     */
+    protected $imageName;
+
 
 
 
@@ -158,6 +181,39 @@ class Article
     {
         return $this->author;
     }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\File\File $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\File\File
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $imageName
+     */
+    public function setImageName($imageName)
+    {
+        $this->imageName = $imageName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageName()
+    {
+        return $this->imageName;
+    }
+
 
 
 

@@ -25,6 +25,10 @@
                 <th>Enabled</th>
                 <td>{{ entity.enabled }}</td>
             </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ vich_uploader_asset(entity, 'image') | imagine_filter('my_thumb') }}" /></td>
+            </tr>
         </tbody>
     </table>
 
