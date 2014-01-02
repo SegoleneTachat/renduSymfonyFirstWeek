@@ -1,48 +1,25 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Article</h1>
+    <h1>{{ entity.title }}</h1>
+    <img src="{{ vich_uploader_asset(entity, 'image') | imagine_filter('my_thumb') }}" />
+    <p>{{ entity.content }}</p>
+    <em>Catégories :
+        {% for category in categories %}
+            <p>{{ category.name }}</p>
+        {% endfor %}
+    </em>
+    <h1>Commentaires : </h1>
+    {% for comment in comments %}
+        <p>{{ comment.author }} : {{ comment.content }}</p>
+    {% endfor %}
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ entity.title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ entity.content }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Enabled</th>
-                <td>{{ entity.enabled }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td><img src="{{ vich_uploader_asset(entity, 'image') | imagine_filter('my_thumb') }}" /></td>
-            </tr>
-        </tbody>
-    </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('article') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('article_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+
+
+    <a href="{{ path('comment_create', { 'article_id': entity.id }) }}">
+        Ajouter un commentaire
+    </a>
+
+
 {% endblock %}

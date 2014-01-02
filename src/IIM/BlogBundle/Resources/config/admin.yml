@@ -4,3 +4,8 @@ services:
       tags:
         - { name: sonata.admin, manager_type: orm, group: Blog, label: Articles}
       arguments: [null, IIM\BlogBundle\Entity\Article,SonataAdminBundle:CRUD]
+    iim.blog.admin.category:
+      class: IIM\BlogBundle\Admin\CategoryAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Blog, label: Categories}
+      arguments: [null, IIM\BlogBundle\Entity\Category,SonataAdminBundle:CRUD]

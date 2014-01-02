@@ -28,6 +28,20 @@ class Comment
      */
     private $content;
 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $author;
+
+    /**
+     * @var Article
+     *
+     * @ORM\ManyToOne(targetEntity="Article")
+     */
+    private $article;
+
 
     /**
      * Get id
@@ -61,4 +75,38 @@ class Comment
     {
         return $this->content;
     }
+
+    /**
+     * @param \IIM\BlogBundle\Entity\Article $article
+     */
+    public function setArticle($article)
+    {
+        $this->article = $article;
+    }
+
+    /**
+     * @return \IIM\BlogBundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+
+    /**
+     * @param \IIM\BlogBundle\Entity\User $author
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+    }
+
+    /**
+     * @return \IIM\BlogBundle\Entity\User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+
 }

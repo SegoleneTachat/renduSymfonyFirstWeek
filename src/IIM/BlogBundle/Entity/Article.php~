@@ -65,11 +65,9 @@ class Article
     private $comments;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="articles", cascade={"persist"})
-     * @ORM\JoinTable(name="article_category",
-     * joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
-     * inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
-     * )
+     * @var Category
+     *
+     * @ORM\ManyToMany(targetEntity="Category", mappedBy="articles")
      */
     private $categories;
 
@@ -260,53 +258,6 @@ class Article
     public function getCategories()
     {
         return $this->categories;
-    }
-
-
-    /**
-     * Add comments
-     *
-     * @param \IIM\BlogBundle\Entity\Comment $comments
-     * @return Article
-     */
-    public function addComment(\IIM\BlogBundle\Entity\Comment $comments)
-    {
-        $this->comments[] = $comments;
-
-        return $this;
-    }
-
-    /**
-     * Remove comments
-     *
-     * @param \IIM\BlogBundle\Entity\Comment $comments
-     */
-    public function removeComment(\IIM\BlogBundle\Entity\Comment $comments)
-    {
-        $this->comments->removeElement($comments);
-    }
-
-    /**
-     * Add categories
-     *
-     * @param \IIM\BlogBundle\Entity\Category $categories
-     * @return Article
-     */
-    public function addCategory(\IIM\BlogBundle\Entity\Category $categories)
-    {
-        $this->categories[] = $categories;
-
-        return $this;
-    }
-
-    /**
-     * Remove categories
-     *
-     * @param \IIM\BlogBundle\Entity\Category $categories
-     */
-    public function removeCategory(\IIM\BlogBundle\Entity\Category $categories)
-    {
-        $this->categories->removeElement($categories);
     }
 
 

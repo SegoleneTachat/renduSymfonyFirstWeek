@@ -72,9 +72,9 @@ abstract class Manager
         return $entity;
     }
 
-    public function findBy(array $criteria)
+    public function findBy(array $criteria, array $orderBy = null)
     {
-        return $this->repository->findBy($criteria);
+        return $this->repository->findBy($criteria, $orderBy);
     }
 
     public function find($id,$exception = false)

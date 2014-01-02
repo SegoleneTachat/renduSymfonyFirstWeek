@@ -31,7 +31,8 @@ class ArticleController extends Controller
         //$em = $this->getDoctrine()->getManager();
 
         //$entities = $em->getRepository('IIMBlogBundle:Article')->findAll();
-        $entities = $this->get('article.manager')->findAll();
+        $entities = $this->get('article.manager')->findBy(array(), array('createdAt' => 'desc'));
+
 
         return array(
             'entities' => $entities,
@@ -104,6 +105,8 @@ class ArticleController extends Controller
 
         //$entity = $em->getRepository('IIMBlogBundle:Article')->find($id);
         $entity = $this->get('article.manager')->find($id);
+        $comments = $this->get('comment.manager')->findBy(array('article' => $id));
+        $categories = $this->get('category.manager')->findAll();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Article entity.');
@@ -113,6 +116,8 @@ class ArticleController extends Controller
 
         return array(
             'entity'      => $entity,
+            'comments'    => $comments,
+            'categories'  => $categories,
             'delete_form' => $deleteForm->createView(),
         );
     }

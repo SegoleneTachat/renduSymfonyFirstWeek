@@ -82,10 +82,24 @@ services:
       arguments:
         - "@doctrine.orm.entity_manager"
         - IIM\BlogBundle\Entity\Article
+    comment.manager:
+      class: IIM\BlogBundle\Manager\CommentManager
+      arguments:
+        - "@doctrine.orm.entity_manager"
+        - IIM\BlogBundle\Entity\Comment
+    category.manager:
+      class: IIM\BlogBundle\Manager\CategoryManager
+      arguments:
+        - "@doctrine.orm.entity_manager"
+        - IIM\BlogBundle\Entity\Category
     iim.article.form.type:
       class: IIM\BlogBundle\Form\ArticleType
       tags:
         - { name: form.type, alias: article }
+    iim.comment.form.type:
+      class: IIM\BlogBundle\Form\CommentType
+      tags:
+        - { name: form.type, alias: comment }
     article.listener:
       class: IIM\BlogBundle\Listener\ArticleListener
       arguments: ["@service_container"]

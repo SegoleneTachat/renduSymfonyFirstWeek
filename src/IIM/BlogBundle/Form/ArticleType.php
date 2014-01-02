@@ -19,6 +19,7 @@ class ArticleType extends AbstractType
             ->add('content')
             ->add('image')
             ->add('enabled')
+            ->add('categories')
         ;
     }
     
