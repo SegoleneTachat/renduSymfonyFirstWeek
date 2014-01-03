@@ -53,7 +53,7 @@ class Article
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", cascade={"persist"})
      */
     private $author;
 
@@ -67,8 +67,8 @@ class Article
     /**
      * @ORM\ManyToMany(targetEntity="Category", inversedBy="articles", cascade={"persist"})
      * @ORM\JoinTable(name="article_category",
-     * joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
-     * inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     * joinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")},
+     * inverseJoinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")}
      * )
      */
     private $categories;
